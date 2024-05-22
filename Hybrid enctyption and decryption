@@ -1,0 +1,19 @@
+def autokey_cipher(message, key):
+    key_stream = key + message
+    key_stream = key_stream[:len(message)]
+
+    result = ""
+    for i in range(len(message)):
+        char_message = message[i]
+        char_key = key_stream[i]
+
+        result += chr(((ord(char_message) + ord(char_key)) % 26) + 65)
+
+    return result
+
+# Example Usage
+message = "HELLO"
+key = "KEY"
+
+encrypted_message = autokey_cipher(message, key)
+print("Encrypted Message:", encrypted_message)
